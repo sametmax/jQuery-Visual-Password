@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Jquery Visual Password Demo</title>
+
+  <script src="libs/jquery-1.7.2.min.js" type="text/javascript"></script>
+  <script src="libs/vizhash.min.js" type="text/javascript" ></script>
+  <script src="jquery-visual-password.min.js" type="text/javascript" ></script>
+
+  <style type="text/css">
+    input, label {
+      height:32px;
+      width:150px;
+      font-size:24px;
+    }
+  </style>
+
+</head>
+<body>
+
+<script type="text/javascript">
+  $(function(){
+    $('input[type=password]').visualPassword();
+  });
+</script>
+
+<h1>Jquery Visual Password</h1>
+
+<p>
+  <a href="https://github.com/sametmax/jQuery-Visual-Password">Project page</a>
+</p>
+
+<form action="." method="get" accept-charset="utf-8" >
+  <p>
+    <label for="pwd1">Password: <input type="password" name="pwd1"></label>
+  </p>
+  <p>
+    <label for="pwd2" >Password: <input type="password" name="pwd2" ></label>
+  </p>
+</form>
+
+</body>
+</html>
