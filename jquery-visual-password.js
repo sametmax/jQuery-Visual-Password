@@ -89,7 +89,8 @@
         - $canvas: the jQuery wrapped canvas freshly created.
         - options: the plugin dictionary options.
 
-      Default insert the canvas at the begining of the password field.
+      Default insert the canvas at the begining of the password field as
+      background image then DELETE the canvas object.
 
     onResize:
 
@@ -148,7 +149,6 @@
       Function to call when the cursor enter or leave the area where
       the canvas is.
 
-
       Arguments passed:
         - event: the jQuery event object.
         - action: "enter" or "leave"
@@ -167,6 +167,10 @@
         - $input: the jQuery wrapped password field the event fired on.
         - classes: A list of classes to apply to the canvas.
         - options: the plugin dictionary options.
+
+      It returns a canva wrapped in a jquery object with all event handlers
+      attache to it. Be careful if you override this one, you probably
+      want read the source code first.
 
     noSupport:
 
@@ -293,6 +297,8 @@
                                    + offset + 'px ' + offset + 'px');
       $input.css('background', bg);
       $input.css('padding-left', height + offset);
+      $canvas.remove();
+      $canvas = null;
     },
     onResize: function(event, $input, $canvas, options) {
          var $canvas = createCanvas(input, [canvas.class()],
@@ -310,7 +316,7 @@
       $canvas.click(function(e){
         options.onClickCanvas(e, $input, $canvas, options);
       });
-      // ubind previous handler to avoid firing the event multiple times
+      // unbind previous handler to avoid firing the event multiple times
       // then rebind new handlers with the proper closure
       // the mouse over is just a way to have a mousemouve on the password
       // fields
@@ -368,7 +374,7 @@
       if (action=='enter'){
         $input.css('cursor', 'pointer');
       } else {
-        $input.css('cursor', 'inherit');
+        $input.css('cursor', 'text');
       }
     },
 

@@ -21,11 +21,9 @@ Usage
 
 In your header, add:
 
-<pre>
-  <script src="libs/jquery-1.7.2.min.js" type="text/javascript"></script>
-  <script src="libs/vizhash.min.js" type="text/javascript" ></script>
-  <script src="jquery-visual-password.min.js" type="text/javascript" ></script>
-</pre>
+    <script src="libs/jquery-1.7.2.min.js" type="text/javascript"></script>
+    <script src="libs/vizhash.min.js" type="text/javascript" ></script>
+    <script src="jquery-visual-password.min.js" type="text/javascript" ></script>
 
 Then:
 
@@ -81,36 +79,95 @@ Options:
 
   change:
 
-    Fonction to call when the change event if fired on a password field.
+    Function to call when the change event if fired on a password field.
 
     Arguments passed:
+      - event: the jQuery event object.
       - $input: the jQuery wrapped password field the event fired on.
       - $canvas: the jQuery wrapped canvas freshly created.
       - options: the plugin dictionary options.
 
     Default does nothing.
 
-  keyup:
+  onKeyUp:
 
-    Fonction to call when the keyup event if fired on a password field.
+    Function to call when the onKeyUp event if fired on a password field.
 
     Arguments passed:
+      - event: the jQuery event object.
       - $input: the jQuery wrapped password field the event fired on.
       - $canvas: the jQuery wrapped canvas freshly created.
       - options: the plugin dictionary options.
 
-    Default insert the canvas at the begining of the password field.
+    Default insert the canvas at the begining of the password field as
+    background image then DELETE the canvas object.
 
-  resize:
+  onResize:
 
-    Fonction to call when the resize event if fired on a password field.
+    Function to call when the onResize event if fired on a password field.
 
     Arguments passed:
+      - event: the jQuery event object.
       - $input: the jQuery wrapped password field the event fired on.
       - $canvas: the jQuery wrapped canvas freshly created.
       - options: the plugin dictionary options.
 
-    Default calls the same callback as for the keyup event.
+    Default calls the same callback as for the onKeyUp event.
+
+  onClickPassword
+
+    Function to call when the password field receives a click.
+
+    Arguments passed:
+      - event: the jQuery event object.
+      - $input: the jQuery wrapped password field the event fired on.
+      - $canvas: the jQuery wrapped canvas freshly created.
+      - options: the plugin dictionary options.
+
+    Default calls onClickCanvas if the click is
+    on the place where the canvas is displayed.
+
+  onClickCanvas
+
+    Function to call when the canvas receives a click.
+
+    Arguments passed:
+      - event: the jQuery event object.
+      - $input: the jQuery wrapped password field the event fired on.
+      - $canvas: the jQuery wrapped canvas freshly created.
+      - options: the plugin dictionary options.
+
+    Default open a pop up to the plugin Github page.
+
+  onHoverPassWord
+
+    Function to call when the cursor enter or leave the area where
+    the password field is.
+
+    Arguments passed:
+      - event: the jQuery event object.
+      - action: "enter" or "leave"
+      - $input: the jQuery wrapped password field the event fired on.
+      - $canvas: the jQuery wrapped canvas freshly created.
+      - options: the plugin dictionary options.
+
+    Default calls onHoverCanvas if the hovering is
+    on the place where the canvas is displayed.
+
+  onHoverCanvas
+
+    Function to call when the cursor enter or leave the area where
+    the canvas is.
+
+    Arguments passed:
+      - event: the jQuery event object.
+      - action: "enter" or "leave"
+      - $input: the jQuery wrapped password field the event fired on.
+      - $canvas: the jQuery wrapped canvas freshly created.
+      - options: the plugin dictionary options.
+
+    Default open a dialog with a short explanation and ask if the user
+    want to learn more about the plugin. If yes, open the project github page.
 
   createCanvas:
 
@@ -121,9 +178,13 @@ Options:
       - classes: A list of classes to apply to the canvas.
       - options: the plugin dictionary options.
 
+    It returns a canva wrapped in a jquery object with all event handlers
+    attache to it. Be careful if you override this one, you probably
+    want read the source code first.
+
   noSupport:
 
-    The fonction called when the plugin detect that the browser doesn't
+    The Function called when the plugin detect that the browser doesn't
     support canvas of data URI.
 
     Arguments passed:
